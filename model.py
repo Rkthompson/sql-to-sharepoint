@@ -25,7 +25,9 @@ class ListItem:
 
 class Batch:
     def __init__(self):
-        self._to_batch = set()  # type: ListItem
+        self._requests = set()  # type: Set[ListItem]
         
     def add_to_batch(self, request: ListItem):
-        self._to_batch.add(request)
+        self._requests.add(request)
+
+    
