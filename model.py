@@ -26,7 +26,18 @@ class ListItem:
 class Batch:
     def __init__(self):
         self._database_lines = set()  # type: Set[ListItem]
+
+    def __repr__(self):
+        return f"<Batch {self.reference}>"
         
+    def __eq__(self, other):
+        if not isinstance(other, Batch):
+            return False
+        return other.reference == self.reference
+
+    def __hash__(self):
+        return hash(self.reference)
+
     def add_to_batch(self, database_line: ListItem):
         self._database_lines.add(database_line)
 
