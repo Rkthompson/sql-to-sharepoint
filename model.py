@@ -1,11 +1,17 @@
+from __future__ import annotations
 from dataclasses import dataclass
 from datetime import date
 from typing import Optional, List, Set
 
+def add_to_batch(line: ListItem, batches: List[Batch]) -> str:
+    batch = next(b for b in sorted(batches))
+    batch.add_to_batch(line)
+    return batch.reference
+
 # ListItem class represents a value object that will 
 # transition from SQL record to SharePoint List Item.
 
-@dataclass(frozen=True)
+@dataclass(unsafe_hash=True)
 class ListItem:
     id_number: int
     client_name: str
